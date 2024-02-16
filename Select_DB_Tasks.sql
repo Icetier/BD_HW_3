@@ -14,13 +14,68 @@ SELECT musician_name FROM musician
 WHERE musician_name NOT LIKE '% %';
 --5--
 SELECT track_name FROM track
-WHERE track_name LIKE '%My%' or track_name LIKE '%Мой%';
+WHERE track_name LIKE '%My%' OR track_name LIKE '%Мой%';
 
 --Task 3--
 
 --1--
-
 SELECT m.genre_name, COUNT(musician_id) FROM music_genre m
 JOIN musician_genre p ON m.genre_id = p.genre_id
 GROUP BY genre_name;
+--2--
+SELECT COUNT(album_name) FROM track t
+JOIN album a ON t.album_id = a.album_id
+WHERE release BETWEEN '2019-01-01' AND '2020-12-31';
+--3--
+SELECT album_name, avg(duration) FROM track t
+JOIN album a ON t.album_id = a.album_id
+GROUP BY album_name;
+--4--
+SELECT musician_name FROM musician m 
+JOIN mus_album ma ON m.musician_id = ma.musician_id
+JOIN album a ON ma.album_id = a.album_id
+WHERE release NOT BETWEEN '2020-01-01' AND '2020-12-31' 
+GROUP BY musician_name;
+--5--
+SELECT collection_name FROM collection c
+JOIN playlist p ON p.collection_id = c.collection_id
+JOIN track t ON p.track_id = t.track_id
+JOIN album a ON t.album_id = a.album_id
+JOIN mus_album ma ON ma.album_id = a.album_id
+JOIN musician m ON ma.musician_id = m.musician_id
+WHERE musician_name = 'Scorpions'
+GROUP BY collection_name;
 
+--Task 4--
+
+--1--
+SELECT album_name, COUNT(genre_name) FROM album a 
+JOIN mus_album ma ON a.album_id = ma.album_id
+JOIN musician m ON ma.musician_id = m.musician_id 
+JOIN musician_genre mg ON m.musician_id = mg.musician_id 
+JOIN music_genre g ON g.genre_id = mg.genre_id
+GROUP BY album_name 
+HAVING COUNT(genre_name) > 1;
+--2--
+SELECT track_name FROM track t
+LEFT JOIN playlist p ON t.track_id = p.track_id
+WHERE collection_id IS NULL;
+--3--
+SELECT musician_name, duration FROM track t
+JOIN album a ON t.album_id = a.album_id
+JOIN mus_album ma ON ma.album_id = a.album_id
+JOIN musician m ON ma.musician_id = m.musician_id
+WHERE duration = (SELECT min(duration) FROM track);
+--4--
+SELECT DISTINCT album_name from album a
+LEFT JOIN track t ON t.album_id = a.album_id
+WHERE t.album_id IN (
+    SELECT album_id from track
+    GROUP BY album_id
+    HAVING COUNT(album_id) = (
+         SELECT COUNT(track_id) FROM track
+         GROUP BY album_id
+         ORDER BY COUNT
+         LIMIT 1
+)
+);
