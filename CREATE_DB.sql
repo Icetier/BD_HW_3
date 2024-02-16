@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS album (
 	release date CHECK(release > '1900-01-01') 
 );
 
-CREATE TABLE IF NOT EXISTS album_musician (
+CREATE TABLE IF NOT EXISTS mus_album (
 	musician_id INTEGER REFERENCES musician(musician_id),
 	album_id INTEGER REFERENCES album(album_id),
 	CONSTRAINT pk_AlbMus PRIMARY KEY (musician_id, album_id)
