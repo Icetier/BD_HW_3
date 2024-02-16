@@ -9,7 +9,7 @@ VALUES
 (7, 'Inna'),
 (8, 'Filatov & Karas'),
 (9, 'Helene Fischer'),
-(10, 'Sofi Tukker')
+(10, 'Sofi Tukker');
 
 INSERT INTO music_genre 
 VALUES
@@ -19,7 +19,7 @@ VALUES
 (4, 'Классический кроссовер'),
 (5, 'Хард-рок'),
 (6, 'Хаус'),
-(7, 'Поп')
+(7, 'Поп');
 
 INSERT INTO musician_genre 
 VALUES
@@ -32,7 +32,7 @@ VALUES
 (7, 6),
 (8, 6),
 (9, 7),
-(10, 6)
+(10, 6);
 
 INSERT INTO album 
 VALUES
@@ -55,9 +55,9 @@ VALUES
 (17, 'Warner Russia', '2017-01-01'),
 (18, 'Vamos a Marte', '2021-08-06'),
 (19, 'Single', '2022-01-01'),
-(20, 'Soft Animals EP', '2016-01-01')
+(20, 'Soft Animals EP', '2016-01-01');
 
-INSERT INTO album_musician 
+INSERT INTO mus_album
 VALUES
 (1, 1),
 (1, 2),
@@ -78,7 +78,7 @@ VALUES
 (8, 17),
 (9, 18),
 (10, 19),
-(10, 20)
+(10, 20);
 
 INSERT INTO track 
 values
@@ -106,7 +106,7 @@ values
 (22, 'Остаться с тобой', 190, 17),
 (23, 'Vamos a Marte', 203, 18),
 (24, 'Forgive Me', 225, 19),
-(25, 'Awoo', 196, 20)
+(25, 'Awoo', 196, 20);
 
 INSERT INTO collection  
 VALUES 
@@ -117,7 +117,7 @@ VALUES
 (5, 'Electronic Music', '2022-01-01'),
 (6, 'Дидюдя Лучшее', '2015-01-01'),
 (7, 'Nightwish Collection', '2017-01-01'),
-(8, 'Instrumental Music', '2019-01-01')
+(8, 'Instrumental Music', '2019-01-01');
 
 INSERT INTO playlist 
 VALUES
@@ -155,4 +155,4 @@ VALUES
 (8, 9),
 (8, 10),
 (8, 16),
-(8, 17)
+(8, 17);
