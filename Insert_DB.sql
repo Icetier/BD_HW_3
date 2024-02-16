@@ -119,7 +119,7 @@ VALUES
 (7, 'Nightwish Collection', '2017-01-01'),
 (8, 'Instrumental Music', '2019-01-01')
 
-INSERT INTO collection_list 
+INSERT INTO playlist 
 VALUES
 (1, 11),
 (1, 12),
