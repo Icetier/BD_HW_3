@@ -2,7 +2,7 @@
 
 --1--
 SELECT track_name, duration FROM track
-ORDER BY duration DESC LIMIT 1;
+WHERE duration = (SELECT MAX(duration) FROM track);
 --2--
 SELECT track_name, duration FROM track
 WHERE duration >= 210;
