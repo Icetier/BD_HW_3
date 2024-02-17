@@ -31,10 +31,11 @@ SELECT album_name, avg(duration) FROM track t
 JOIN album a ON t.album_id = a.album_id
 GROUP BY album_name;
 --4--
-SELECT musician_name FROM musician m 
-JOIN mus_album ma ON m.musician_id = ma.musician_id
-JOIN album a ON ma.album_id = a.album_id
-WHERE release NOT BETWEEN '2020-01-01' AND '2020-12-31' 
+SELECT musician_name FROM musician
+WHERE musician_name NOT IN (SELECT musician_name FROM musician m 
+	JOIN mus_album ma ON m.musician_id = ma.musician_id
+	JOIN album a ON ma.album_id = a.album_id
+	WHERE release BETWEEN '2020-01-01' AND '2020-12-31') 
 GROUP BY musician_name;
 --5--
 SELECT collection_name FROM collection c
