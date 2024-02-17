@@ -44,8 +44,7 @@ JOIN track t ON p.track_id = t.track_id
 JOIN album a ON t.album_id = a.album_id
 JOIN mus_album ma ON ma.album_id = a.album_id
 JOIN musician m ON ma.musician_id = m.musician_id
-WHERE musician_name = 'Scorpions'
-GROUP BY collection_name;
+WHERE musician_name = 'Within Temptation';
 
 --Task 4--
 
