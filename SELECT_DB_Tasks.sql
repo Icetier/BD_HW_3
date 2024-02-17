@@ -67,15 +67,12 @@ JOIN mus_album ma ON ma.album_id = a.album_id
 JOIN musician m ON ma.musician_id = m.musician_id
 WHERE duration = (SELECT min(duration) FROM track);
 --4--
-SELECT DISTINCT album_name from album a
-LEFT JOIN track t ON t.album_id = a.album_id
-WHERE t.album_id IN (
-    SELECT album_id from track
-    GROUP BY album_id
-    HAVING COUNT(album_id) = (
-         SELECT COUNT(track_id) FROM track
-         GROUP BY album_id
-         ORDER BY COUNT
-         LIMIT 1
-)
-);
+SELECT album_name, COUNT(track_name) track_count FROM album a
+JOIN track t ON a.album_id = t.album_id
+GROUP BY a.album_id
+HAVING COUNT(track_name) = (  
+	SELECT COUNT(track_name) FROM album
+	JOIN track ON album.album_id = track.album_id
+	GROUP BY album.album_id
+	ORDER BY COUNT(track_name)
+	LIMIT 1);
